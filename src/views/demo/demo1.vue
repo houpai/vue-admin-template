@@ -1,6 +1,6 @@
 <template>
   <div class="demo1-container">
-    demo1
+    <svg-icon :icon-class="'beatsbydre'"></svg-icon>
   </div>
 </template>
 
