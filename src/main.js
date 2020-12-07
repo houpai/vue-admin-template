@@ -43,7 +43,7 @@ Vue.use(ElementUI)
 Vue.use(VueBus)
 
 Vue.config.productionTip = false
-Vue.prototype.$globalServiceHost = globalServiceHost
+// Vue.prototype.$globalServiceHost = globalServiceHost
 
 new Vue({
   el: '#app',
