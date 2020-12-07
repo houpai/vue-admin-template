@@ -1,4 +1,5 @@
-import { login, logout, getInfo } from '@/api/user'
+// import { login, logout, getInfo } from '@/api/user'
+import { userSrv } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -34,7 +35,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      userSrv.login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -48,8 +49,12 @@ const actions = {
   // 获取用户信息
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      let params = {
+        token: state.token
+      }
+      userSrv.getInfo(params).then(response => {
         const { data } = response
+        console.log('response===', response)
 
         if (!data) {
           return reject('请重新登录')
@@ -69,7 +74,7 @@ const actions = {
   // 退出登录
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+      userSrv.logout(state.token).then(() => {
         removeToken() // must remove  token  first
         resetRouter() // 退出登录初始化路由
         commit('RESET_STATE')

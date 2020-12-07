@@ -1,24 +1,22 @@
-import request from '@/utils/request'
+import HttpUtils from '@/utils/http.utils'
 
-export function login(data) {
-  return request({
-    url: '/vue-admin-template/user/login',
-    method: 'post',
-    data
-  })
+const urls = {
+  'LOGIN': '/vue-admin-template/user/login',
+  'GETINFO': '/vue-admin-template/user/info',
+  'LOGOUT': '/vue-admin-template/user/logout'
 }
 
-export function getInfo(token) {
-  return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
-  })
+let userSrv = {
+  login: function(params) {
+    return HttpUtils.post(urls.LOGIN, params)
+  },
+  getInfo:function(params) {
+    return HttpUtils.get(urls.GETINFO, params)
+  },
+  logout:function(params) {
+    return HttpUtils.post(urls.LOGOUT, params)
+  }
 }
 
-export function logout() {
-  return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
-  })
-}
+export { userSrv }
+

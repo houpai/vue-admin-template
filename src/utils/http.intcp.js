@@ -7,6 +7,7 @@ import axios from "axios";
 import Intcp from "../interceptors";
 
 axios.defaults.timeout = 30000; // 异步请求超时时间30s
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API
 
 function _interceptors() {
   //http请求拦截器
