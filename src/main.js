@@ -21,7 +21,6 @@ import './directives'
 import $ from 'jquery'
 import './utils/startUp'
 
-import { globalServiceHost } from './utils/httpConfig'
 
 /**
  * If you don't want to use mock-server
